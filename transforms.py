@@ -26,7 +26,6 @@ for x in df1['Fecha'].values:
   dictFechas["Numero de año"].append(nAnho)
 
 dfFechas = pd.DataFrame(dictFechas) 
-df_merged = pd.concat([df1, dfFechas], axis=1)
 
 ## Tabla 2
 # separar el nombre y apellido en distintas columnas
@@ -73,6 +72,7 @@ print(df3.head(10))
 
 
 with pd.ExcelWriter('./DatosArreglados.xlsx', engine='openpyxl') as writer:
+    df1.to_excel(writer, sheet_name='Hoja 1', index=False)
     df2.to_excel(writer, sheet_name='Hoja 2', index=False)
     df3.to_excel(writer, sheet_name='Hoja 3', index=False)
-    df_merged.to_excel(writer, sheet_name='Hoja Fechas', index=False)
+    dfFechas.to_excel(writer, sheet_name='Hoja Fechas', index=False)
