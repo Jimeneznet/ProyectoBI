@@ -14,7 +14,7 @@ meses = [
 
 #! Preguntar al cliente si hay que agregar días también
 
-df1 = pd.read_excel("C:/Users/HansH/OneDrive/Escritorio/Taller1/DatosEjemplo.xlsx", sheet_name="Hoja1")
+df1 = pd.read_excel("./DatosEjemplo.xlsx", sheet_name="Hoja1")
 dictFechas = {"Numero de mes": [], "Nombre mes": [], "Numero de año": []}
 for x in df1['Fecha'].values:
   fecha = str(x)[:10].split("-") #Eliminar los tildes?, separar con punto?
@@ -33,7 +33,7 @@ df_merged = pd.concat([df1, dfFechas], axis=1)
 # columna de correo electronico
 # generar aleatoriamente una columna n de contacto
 
-df2 = pd.read_excel("C:/Users/HansH/OneDrive/Escritorio/Taller1/DatosEjemplo.xlsx", sheet_name="Hoja2")
+df2 = pd.read_excel("./DatosEjemplo.xlsx", sheet_name="Hoja2")
 emails = []
 apellidos = []
 numeros= []
@@ -52,18 +52,18 @@ df2["Numero de Contacto"] = numeros
 
 # tabla 3
 # AGREGAR una columna de precio-venta y costo-producciónter, sheet_name='Tabla ', index=False)
-df3 = pd.read_excel("C:/Users/HansH/OneDrive/Escritorio/Taller1/DatosEjemplo.xlsx", sheet_name="Hoja3")
+df3 = pd.read_excel("./DatosEjemplo.xlsx", sheet_name="Hoja3")
 PrecioVentas = []
 CostoProducciones = []
 numeros= []
-CostoN = np.random.randint(100, 9999, size=1)
+CostoN = np.random.randint(100, 9999)
 
 
 for x in df3['CódigoProducto'].values:
   names = x.split(" ")  #!Eliminar los tildes?, separar con punto?
   CostoProduccion = CostoN
   CostoProducciones.append(CostoProduccion) 
-  CostoN = np.random.randint(1, 500, size=1)
+  CostoN = np.random.randint(1, 500)
   VentaN = CostoProduccion + CostoN
   PrecioVenta = VentaN
   PrecioVentas.append(PrecioVenta)
@@ -72,7 +72,7 @@ df3["Costo Produccion"] = CostoProducciones
 print(df3.head(10))
 
 
-with pd.ExcelWriter('C:/Users/HansH/OneDrive/Escritorio/Taller1/DatosArreglados.xlsx', engine='openpyxl') as writer:
+with pd.ExcelWriter('./DatosArreglados.xlsx', engine='openpyxl') as writer:
     df2.to_excel(writer, sheet_name='Hoja 2', index=False)
     df3.to_excel(writer, sheet_name='Hoja 3', index=False)
     df_merged.to_excel(writer, sheet_name='Hoja Fechas', index=False)
