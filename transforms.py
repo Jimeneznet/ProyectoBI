@@ -56,14 +56,14 @@ df3 = pd.read_excel("C:/Users/HansH/OneDrive/Escritorio/Taller1/DatosEjemplo.xls
 PrecioVentas = []
 CostoProducciones = []
 numeros= []
-CostoN = np.random.randint(100, 9999)
+CostoN = np.random.randint(100, 9999, size=1)
 
 
 for x in df3['CódigoProducto'].values:
   names = x.split(" ")  #!Eliminar los tildes?, separar con punto?
   CostoProduccion = CostoN
   CostoProducciones.append(CostoProduccion) 
-  CostoN = np.random.randint(1, 500)
+  CostoN = np.random.randint(1, 500, size=1)
   VentaN = CostoProduccion + CostoN
   PrecioVenta = VentaN
   PrecioVentas.append(PrecioVenta)
